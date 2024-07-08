@@ -1,6 +1,6 @@
 ---
-name: Audit item
-about: These are the audit items that end up in the report
+name: Legacy Audit Item
+about: Legacy version of the audit items that end up in the report
 title: ""
 labels: ""
 assignees: ""
