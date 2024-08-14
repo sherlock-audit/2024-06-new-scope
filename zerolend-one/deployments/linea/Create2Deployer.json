@@ -1,0 +1,78 @@
+{
+  "address": "0x179F0B499D21488f32B361671F5a01a4EEFC30d7",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "addr",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "salt",
+          "type": "uint256"
+        }
+      ],
+      "name": "Deployed",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "code",
+          "type": "bytes"
+        },
+        {
+          "internalType": "uint256",
+          "name": "salt",
+          "type": "uint256"
+        }
+      ],
+      "name": "deploy",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0xb545a095da102b0e890dbf2195bda50b0ab27f567cc356177e275e30ffc94a04",
+  "receipt": {
+    "to": null,
+    "from": "0x5ebeB6E0361dDA1d3BF234e99160cE224087d10a",
+    "contractAddress": "0x179F0B499D21488f32B361671F5a01a4EEFC30d7",
+    "transactionIndex": 8,
+    "gasUsed": "144379",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x5406b1c4d1938305af55ce2976c16e2b3999efb23491a35e8b7d510f7b9470ca",
+    "transactionHash": "0xb545a095da102b0e890dbf2195bda50b0ab27f567cc356177e275e30ffc94a04",
+    "logs": [],
+    "blockNumber": 6948689,
+    "cumulativeGasUsed": "1154434",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "c62d112decf97d8f913a1737220a9b57",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"salt\",\"type\":\"uint256\"}],\"name\":\"Deployed\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"code\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"salt\",\"type\":\"uint256\"}],\"name\":\"deploy\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/periphery/Create2Deployer.sol\":\"Create2Deployer\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/periphery/Create2Deployer.sol\":{\"content\":\"// SPDX-License-Identifier: BUSL-1.1\\npragma solidity 0.8.19;\\n\\n// \\u2588\\u2588\\u2588\\u2588\\u2588\\u2588\\u2588\\u2557\\u2588\\u2588\\u2588\\u2588\\u2588\\u2588\\u2588\\u2557\\u2588\\u2588\\u2588\\u2588\\u2588\\u2588\\u2557  \\u2588\\u2588\\u2588\\u2588\\u2588\\u2588\\u2557\\n// \\u255a\\u2550\\u2550\\u2588\\u2588\\u2588\\u2554\\u255d\\u2588\\u2588\\u2554\\u2550\\u2550\\u2550\\u2550\\u255d\\u2588\\u2588\\u2554\\u2550\\u2550\\u2588\\u2588\\u2557\\u2588\\u2588\\u2554\\u2550\\u2550\\u2550\\u2588\\u2588\\u2557\\n//   \\u2588\\u2588\\u2588\\u2554\\u255d \\u2588\\u2588\\u2588\\u2588\\u2588\\u2557  \\u2588\\u2588\\u2588\\u2588\\u2588\\u2588\\u2554\\u255d\\u2588\\u2588\\u2551   \\u2588\\u2588\\u2551\\n//  \\u2588\\u2588\\u2588\\u2554\\u255d  \\u2588\\u2588\\u2554\\u2550\\u2550\\u255d  \\u2588\\u2588\\u2554\\u2550\\u2550\\u2588\\u2588\\u2557\\u2588\\u2588\\u2551   \\u2588\\u2588\\u2551\\n// \\u2588\\u2588\\u2588\\u2588\\u2588\\u2588\\u2588\\u2557\\u2588\\u2588\\u2588\\u2588\\u2588\\u2588\\u2588\\u2557\\u2588\\u2588\\u2551  \\u2588\\u2588\\u2551\\u255a\\u2588\\u2588\\u2588\\u2588\\u2588\\u2588\\u2554\\u255d\\n// \\u255a\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u255d\\u255a\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u255d\\u255a\\u2550\\u255d  \\u255a\\u2550\\u255d \\u255a\\u2550\\u2550\\u2550\\u2550\\u2550\\u255d\\n\\n// Website: https://zerolend.xyz\\n// Discord: https://discord.gg/zerolend\\n// Twitter: https://twitter.com/zerolendxyz\\n// Telegram: https://t.me/zerolendxyz\\n\\ncontract Create2Deployer {\\n  event Deployed(address addr, uint256 salt);\\n\\n  function deploy(bytes memory code, uint256 salt) public {\\n    address addr;\\n    assembly {\\n      addr := create2(0, add(code, 0x20), mload(code), salt)\\n      if iszero(extcodesize(addr)) { revert(0, 0) }\\n    }\\n\\n    emit Deployed(addr, salt);\\n  }\\n}\\n\",\"keccak256\":\"0x2b037ea07a54d0e5871957c0fb06738660012f1243a0e3eb1caf8e4aba01fec2\",\"license\":\"BUSL-1.1\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506101a6806100206000396000f3fe608060405234801561001057600080fd5b506004361061002b5760003560e01c80639c4ae2d014610030575b600080fd5b61004361003e3660046100bb565b610045565b005b6000818351602085016000f59050803b61005e57600080fd5b604080516001600160a01b0383168152602081018490527fb03c53b28e78a88e31607a27e1fa48234dce28d5d9d9ec7b295aeb02e674a1e1910160405180910390a1505050565b634e487b7160e01b600052604160045260246000fd5b600080604083850312156100ce57600080fd5b823567ffffffffffffffff808211156100e657600080fd5b818501915085601f8301126100fa57600080fd5b81358181111561010c5761010c6100a5565b604051601f8201601f19908116603f01168101908382118183101715610134576101346100a5565b8160405282815288602084870101111561014d57600080fd5b82602086016020830137600060209382018401529896909101359650505050505056fea2646970667358221220fa1b62f37c632a7916213ec654e721f9542edad321573c96e589258c8a5005eb64736f6c63430008130033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061002b5760003560e01c80639c4ae2d014610030575b600080fd5b61004361003e3660046100bb565b610045565b005b6000818351602085016000f59050803b61005e57600080fd5b604080516001600160a01b0383168152602081018490527fb03c53b28e78a88e31607a27e1fa48234dce28d5d9d9ec7b295aeb02e674a1e1910160405180910390a1505050565b634e487b7160e01b600052604160045260246000fd5b600080604083850312156100ce57600080fd5b823567ffffffffffffffff808211156100e657600080fd5b818501915085601f8301126100fa57600080fd5b81358181111561010c5761010c6100a5565b604051601f8201601f19908116603f01168101908382118183101715610134576101346100a5565b8160405282815288602084870101111561014d57600080fd5b82602086016020830137600060209382018401529896909101359650505050505056fea2646970667358221220fa1b62f37c632a7916213ec654e721f9542edad321573c96e589258c8a5005eb64736f6c63430008130033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [],
+    "types": null
+  }
+}

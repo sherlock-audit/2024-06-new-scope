@@ -1,0 +1,6 @@
+[submodule "zerolend-one/lib/forge-std"]
+	path = zerolend-one/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "zerolend-one/lib/halmos-cheatcodes"]
+	path = zerolend-one/lib/halmos-cheatcodes
+	url = https://github.com/a16z/halmos-cheatcodes
