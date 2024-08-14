@@ -1,7 +1,0 @@
-# sample regex patterns
-ignore:
-  - 'contracts/tests'
-  - 'contracts/governance'
-  - 'contracts/mocks'
-  - 'contracts/periphery'
-  - 'test'

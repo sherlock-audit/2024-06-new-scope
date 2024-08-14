@@ -1,2 +1,0 @@
-echo "Running code formatting scripts"
-yarn lint:fix
