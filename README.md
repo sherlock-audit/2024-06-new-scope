@@ -12,7 +12,7 @@ Ethereum and Linea primarily. And after that any EVM-compatible network.
 ___
 
 ### Q: If you are integrating tokens, are you allowing only whitelisted tokens to work with the codebase or any complying with the standard? Are they assumed to have certain properties, e.g. be non-reentrant? Are there any types of [weird tokens](https://github.com/d-xo/weird-erc20) you want to integrate?
-Any token that follows the ERC20 token standard. Even non-compliant ones like USDT, BNB etc... are fine.
+Only standard ERC20 tokens + USDC and BNB are in-scope
 ___
 
 ### Q: Are there any limitations on values set by admins (or other roles) in the codebase, including restrictions on array lengths?
@@ -46,7 +46,7 @@ Sequencer issues can be ignored.
 ___
 
 ### Q: Should potential issues, like broken assumptions about function behavior, be reported if they could pose risks in future integrations, even if they might not be an issue in the context of the scope? If yes, can you elaborate on properties/invariants that should hold?
-Yes.
+No.
 ___
 
 ### Q: Please discuss any design choices you made.
@@ -66,7 +66,7 @@ We also suspect a possible inflation attack with the vaults as described with th
 ___
 
 ### Q: We will report issues where the core protocol functionality is inaccessible for at least 7 days. Would you like to override this value?
-Yes.
+No.
 ___
 
 ### Q: Please provide links to previous audits (if any).
@@ -80,8 +80,8 @@ Github Doc: https://github.com/zerolend/zerolend-one (The readme has a simple di
 ___
 
 ### Q: Additional audit information.
-We suspect some decimal precision issues between the vault and the pool as the shares/asset accounting used by both contracts are different. The pool uses ray (1e26) for share precision and the vaults use 
-
+We suspect some decimal precision issues between the vault and the pool as the shares/asset accounting used by both contracts are different. The pool uses ray (1e26) for share precision and the vaults use.
+Any precision loss between the vault and the pool is a known issue.
 
 ___
 
